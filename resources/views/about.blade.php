@@ -51,7 +51,7 @@
         <ul>
           <li><a href="{{ route('home') }}" class="active">Home</a></li>
           <li><a href="{{ route('about') }}">About</a></li>
-          <li><a href="{{ route('listproperty') }}">Properties</a></li>
+          <li><a href="{{ route('listproperty') }}"> list Property</a></li>
           <!--<li><a href="services.html">Services</a></li>
           <li><a href="agents.html">Agents</a></li>
           <li><a href="blog.html">Blog</a></li>
