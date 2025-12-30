@@ -1,0 +1,11 @@
+.env
+vendor
+node_modules
+npm-debug.log
+Dockerfile
+docker-compose*.yml
+.git
+/storage/logs
+/storage/*.key
+/public/hot
+/public/storage
