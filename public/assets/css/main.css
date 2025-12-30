@@ -24,7 +24,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #263a31; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #103524; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #077f46; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #f0af17; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -36,7 +36,7 @@
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #263a31; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #077f46; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #f0af17; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -55,11 +55,11 @@
 }
 
 .accent-background {
-  --background-color: #077f46;
+  --background-color: #f0af17;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --accent-color: #ffffff;
-  --surface-color: #2a8f5f;
+  --surface-color: #f0af17;
   --contrast-color: #ffffff;
 }
 
@@ -154,12 +154,12 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: #077f46;
+  --background-color: #ffff;
   --default-color: #ffffff;
   --heading-color: #ffffff;
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 15px 0;
+  color: #fff;
+  background-color: #d49500;
+  padding: 9px 0;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -173,17 +173,15 @@ h6 {
   margin-right: 8px;
 }
 
-.header .logo svg {
-  height: 32px;
-  margin-right: 6px;
-  color: color-mix(in srgb, var(--default-color), transparent 50%);
-}
+
 
 .header .logo h1 {
   font-size: 30px;
   margin: 0;
-  font-weight: 700;
-  color: var(--heading-color);
+  font-weight: 600;
+  color: #fff;
+  font-family: 'Style Script', cursive;
+
 }
 
 .scrolled .header {
@@ -213,11 +211,11 @@ h6 {
 
   .navmenu a,
   .navmenu a:focus {
-    color: var(--nav-color);
+    color: #000;
     padding: 18px 15px;
     font-size: 15px;
-    font-family: var(--nav-font);
-    font-weight: 600;
+font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: space-between;
