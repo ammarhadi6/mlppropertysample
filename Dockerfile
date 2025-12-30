@@ -36,7 +36,8 @@ COPY --from=frontend /app/public ./public
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Copy nginx and supervisord configs
+# Force php-fpm to listen on TCP 127.0.0.1:9000 and copy nginx/supervisord configs
+RUN sed -i "s/^listen =.*/listen = 127.0.0.1:9000/" /usr/local/etc/php-fpm.d/www.conf || true
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
