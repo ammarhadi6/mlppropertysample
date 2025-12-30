@@ -2,6 +2,7 @@
 FROM node:18 AS frontend
 WORKDIR /app
 
+
 # Install frontend deps and build
 COPY package*.json ./
 RUN npm ci --silent
@@ -25,7 +26,24 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # Copy application files
+# --- KEY FIXES START HERE ---
 
+# 1. Copy composer files first to leverage Docker cache
+COPY composer.json composer.lock ./
+
+# 2. Install dependencies (without scripts yet, as code isn't copied)
+RUN composer install --no-dev --no-scripts --no-interaction --prefer-dist
+
+# 3. Now copy the rest of the application code
+COPY . .
+
+# 4. Copy built frontend assets from the frontend stage
+COPY --from=frontend /app/public/build ./public/build
+
+# 5. Run optimization and set permissions
+RUN composer dump-autoload --optimize --no-dev \
+    && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+    
 # Copy built frontend assets from the frontend stage
 COPY --from=frontend /app/public/build ./public/build
 
