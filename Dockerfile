@@ -25,10 +25,9 @@ COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
 # Copy application files
-COPY . .
 
 # Copy built frontend assets from the frontend stage
-COPY --from=frontend /app/public/dist ./public/dist
+COPY --from=frontend /app/public ./public
 
 # Install PHP dependencies and optimize for production
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
