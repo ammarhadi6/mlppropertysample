@@ -12,14 +12,13 @@ RUN npm run build
 # Stage 2 - PHP backend (Laravel)
 FROM php:8.2-fpm
 
-# Install system dependencies, nginx and PHP extensions
+# Install system dependencies and PHP extensions
 RUN apt-get update \
-    && apt-get install -y git curl unzip libpq-dev libonig-dev libzip-dev zip libxml2-dev nginx supervisor --no-install-recommends \
+    && apt-get install -y git curl unzip libpq-dev libonig-dev libzip-dev zip libxml2-dev --no-install-recommends \
     && docker-php-ext-install pdo pdo_mysql mbstring zip exif pcntl \
     && pecl install redis || true \
     && docker-php-ext-enable redis || true \
-    && rm -rf /var/lib/apt/lists/* \
-    && mkdir -p /var/log/supervisor
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
@@ -55,11 +54,7 @@ RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-di
 # Laravel optimizations (run in build; safe to ignore failures)
 RUN php artisan config:cache || true && php artisan route:cache || true && php artisan view:cache || true
 
-# Expose HTTP (nginx) and php-fpm (internal)
-EXPOSE 80 9000
+# Expose php-fpm
+EXPOSE 9000
 
-# Copy nginx config and supervisord config then run supervisord to manage nginx + php-fpm
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
-COPY docker/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-CMD ["/usr/bin/supervisord","-c","/etc/supervisor/conf.d/supervisord.conf"]
+CMD ["php-fpm"]

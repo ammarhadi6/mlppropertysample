@@ -4,8 +4,7 @@ Quick guide to build and run the app using the provided Docker configuration.
 
 ### Files added
 - `Dockerfile` — multi-stage build (Node build + PHP-FPM).
-- `docker-compose.yml` — services: `app`, `nginx`, `db`.
-- `nginx/default.conf` — nginx config to proxy to php-fpm and serve static files.
+- `docker-compose.yml` — services: `app`, `db`.
 - `.dockerignore`
 
 ### Build & Run (local / simple hosting)
