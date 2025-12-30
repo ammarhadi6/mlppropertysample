@@ -27,7 +27,7 @@ WORKDIR /var/www/html
 # Copy application files
 
 # Copy built frontend assets from the frontend stage
-COPY --from=frontend /app/public ./public
+COPY --from=frontend /app/public/build ./public/build
 
 # Install PHP dependencies and optimize for production
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist \
