@@ -29,6 +29,21 @@ You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you
 
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
+## Local development (no Docker) ✅
+Follow these steps to run the app locally on Windows (XAMPP) or any PHP 8.2+ environment:
+
+1. **Update PHP**: ensure you have **PHP 8.2+** (update XAMPP or use WSL) — some dependencies require PHP >= 8.2.
+2. **Copy env**: from the project root run: `copy .env.example .env` (Windows PowerShell) or `cp .env.example .env` (Unix).
+3. **Install PHP deps**: `composer install`
+4. **Generate key**: `php artisan key:generate`
+5. **Configure DB**: set your database credentials in `.env` (use XAMPP MySQL) and run: `php artisan migrate`
+6. **Frontend**: `npm install && npm run dev` (or `npm run build` for production)
+7. **Serve**: `php artisan serve` or configure your Apache virtual host to point to the `public/` directory.
+
+> Note: This repository previously included Docker/Sail artifacts; those were removed to simplify local development.
+
+
+
 ## Laravel Sponsors
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
